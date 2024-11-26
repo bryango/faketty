@@ -8,14 +8,11 @@ edition = "2021"
 keywords = ["tty"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/bryango/faketty-lib"
+rust-version = "1.69.0" # nix 0.29 requires rustc 1.69
 
 [[bin]]
 name = "faketty"
-required-features = ["binary"]
-
-[features]
-default = ["binary"]
-binary = ["dep:clap"]
+required-features = ["clap"]
 
 [dependencies]
 clap = { version = "4", features = ["deprecated"], optional = true }

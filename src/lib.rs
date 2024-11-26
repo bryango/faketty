@@ -1,10 +1,4 @@
 #![deny(unsafe_op_in_unsafe_fn)]
-#![allow(
-    clippy::empty_enum,
-    clippy::let_underscore_untyped,
-    clippy::needless_pass_by_value,
-    clippy::uninlined_format_args
-)]
 #![warn(missing_docs)]
 #![doc = include_str!("../README.md")]
 
@@ -15,6 +9,7 @@ use crate::error::Result;
 use nix::pty::{self, ForkptyResult, Winsize};
 use nix::sys::wait::{self, WaitStatus};
 use nix::unistd::{self, Pid};
+use std::convert::Infallible;
 use std::ffi::CString;
 use std::os::fd::{AsFd, AsRawFd, BorrowedFd};
 use std::process;
@@ -23,14 +18,6 @@ const STDIN: BorrowedFd = unsafe { BorrowedFd::borrow_raw(0) };
 const STDOUT: BorrowedFd = unsafe { BorrowedFd::borrow_raw(1) };
 const STDERR: BorrowedFd = unsafe { BorrowedFd::borrow_raw(2) };
 
-/// Empty enum for the result of [`run_command`].
-///
-/// Internally the process is replaced by [`execvp`][unistd::execvp]
-/// so this result should be unreachable. It is thus similar to
-/// [`std::convert::Infallible`].
-///
-pub enum Exec {}
-
 /// Runs a command in a pty, even if redirecting the output.
 ///
 /// Internally the function calls [`exec(3)`], namely the child process will
@@ -38,7 +25,7 @@ pub enum Exec {}
 ///
 /// [`exec(3)`]: https://pubs.opengroup.org/onlinepubs/9699919799/functions/exec.html
 ///
-pub fn run_command(args: Vec<CString>) -> Result<Exec> {
+pub fn run_command(args: Vec<CString>) -> Result<Infallible> {
     let new_stdin = STDIN.try_clone_to_owned()?;
     let new_stderr = STDERR.try_clone_to_owned()?;
     let pty1 = unsafe { crate::forkpty() }?;
@@ -69,10 +56,9 @@ unsafe fn forkpty() -> Result<ForkptyResult> {
     Ok(result)
 }
 
-fn exec(args: Vec<CString>) -> Result<Exec> {
+fn exec(args: Vec<CString>) -> Result<Infallible> {
     let args: Vec<_> = args.iter().map(CString::as_c_str).collect();
-    unistd::execvp(args[0], &args)?;
-    unreachable!();
+    Ok(unistd::execvp(args[0], &args)?)
 }
 
 fn copyfd(read: BorrowedFd, write: BorrowedFd) {
