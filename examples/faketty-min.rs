@@ -1,6 +1,6 @@
 //! Minimal example of `faketty` without the `clap` dependency
 
-use faketty::run_command;
+use faketty_lib::run_command;
 
 fn main() -> () {
     let mut args = std::env::args();

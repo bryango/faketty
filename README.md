@@ -1,9 +1,23 @@
-faketty
+faketty-lib
 =======
 
-[<img alt="github" src="https://img.shields.io/badge/github-dtolnay/faketty-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/dtolnay/faketty)
-[<img alt="crates.io" src="https://img.shields.io/crates/v/faketty.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/faketty)
-[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/dtolnay/faketty/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/dtolnay/faketty/actions?query=branch%3Amaster)
+<div class="warning">
+<p>
+This is a fork of <a href="https://github.com/dtolnay/faketty">
+<strong>dtolnay/faketty</strong>
+</a>
+in order to expose a library for use with development.
+See <a href="#as-a-library">below</a> for more details.
+</p>
+
+We track upstream releases by identifying the _minor_ version number.
+If there is an API change in the current library crate (however unlikely),
+the _major_ release will be bumped, while the _minor_ release will be
+kept in sync with the upstream project.
+</div>
+
+[<img alt="crates.io" src="https://img.shields.io/crates/v/faketty-lib.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/faketty-lib)
+[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/bryango/faketty-lib/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/bryango/faketty-lib/actions?query=branch%3Amaster)
 
 A wrapper binary to exec a command in a pty, even if redirecting the output.
 

@@ -4,7 +4,7 @@ use std::io::{self, Write};
 use std::os::unix::ffi::OsStrExt;
 use std::process;
 
-use faketty::run_command;
+use faketty_lib::run_command;
 
 fn main() -> ! {
     match run_command(crate::args()) {

@@ -15,4 +15,4 @@ jobs:
     name: Install
     uses: dtolnay/.github/.github/workflows/check_install.yml@master
     with:
-      crate: faketty
+      crate: faketty-lib

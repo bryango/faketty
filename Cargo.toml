@@ -1,13 +1,13 @@
 [package]
-name = "faketty"
+name = "faketty-lib"
 version = "1.0.18"
-authors = ["David Tolnay <dtolnay@gmail.com>"]
+authors = ["David Tolnay <dtolnay@gmail.com>", "Bryan Lai <bryanlais@gmail.com>"]
 categories = ["command-line-utilities", "os::unix-apis"]
 description = "Wrapper to exec a command in a pty, even if redirecting the output"
 edition = "2021"
 keywords = ["tty"]
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/dtolnay/faketty"
+repository = "https://github.com/bryango/faketty-lib"
 
 [[bin]]
 name = "faketty"
