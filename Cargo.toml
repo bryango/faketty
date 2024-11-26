@@ -1,9 +1,9 @@
 [package]
 name = "faketty-lib"
-version = "1.0.18"
+version = "1.0.19"
 authors = ["David Tolnay <dtolnay@gmail.com>", "Bryan Lai <bryanlais@gmail.com>"]
 categories = ["command-line-utilities", "os::unix-apis"]
-description = "Wrapper to exec a command in a pty, even if redirecting the output"
+description = "Library fork of dtolnay/faketty"
 edition = "2021"
 keywords = ["tty"]
 license = "MIT OR Apache-2.0"
