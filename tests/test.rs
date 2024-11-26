@@ -3,13 +3,20 @@ use std::io;
 use std::process::Command;
 
 #[cfg(test)]
-fn test(program: &str) -> io::Result<()> {
+fn test(binary_target: &str) -> io::Result<()> {
     let tempdir = scratch::path("faketty");
     let stdout = tempdir.join("test-stdout");
     let stderr = tempdir.join("test-stderr");
 
-    let status = Command::new(program)
-        .arg("tests/test.sh")
+    let status = Command::new("cargo")
+        .args([
+            "run",
+            "--quiet",
+            "--bin",
+            binary_target,
+            "--",
+            "tests/test.sh",
+        ])
         .stdout(File::create(&stdout)?)
         .stderr(File::create(&stderr)?)
         .status()?;
@@ -22,9 +29,11 @@ fn test(program: &str) -> io::Result<()> {
 
 #[test]
 fn test_all() -> io::Result<()> {
+    #[allow(clippy::single_element_loop)]
     for program in [
-        env!("CARGO_BIN_EXE_faketty"),
-        env!("CARGO_BIN_EXE_faketty-run"),
+        #[cfg(feature = "clap")]
+        "faketty",
+        "faketty-run",
     ] {
         test(program)?;
     }
