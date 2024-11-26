@@ -17,7 +17,7 @@ kept in sync with the upstream project.
 </div>
 
 [<img alt="crates.io" src="https://img.shields.io/crates/v/faketty-lib.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/faketty-lib)
-[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/bryango/faketty-lib/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/bryango/faketty-lib/actions?query=branch%3Amaster)
+[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/bryango/faketty-lib/ci.yml?branch=lib&style=for-the-badge" height="20">](https://github.com/bryango/faketty-lib/actions?query=branch%3Alib)
 
 A wrapper binary to exec a command in a pty, even if redirecting the output.
 

@@ -7,7 +7,7 @@ use std::process;
 use faketty_lib::run_command;
 
 fn main() -> ! {
-    match run_command(crate::args()) {
+    match run_command(&crate::args()) {
         Err(err) => {
             let _ = writeln!(io::stderr(), "faketty: {}", err);
             process::exit(1);

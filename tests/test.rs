@@ -2,6 +2,7 @@ use std::fs::{self, File};
 use std::io;
 use std::process::Command;
 
+#[cfg(test)]
 fn test(program: &str) -> io::Result<()> {
     let tempdir = scratch::path("faketty");
     let stdout = tempdir.join("test-stdout");

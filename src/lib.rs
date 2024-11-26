@@ -25,7 +25,8 @@ const STDERR: BorrowedFd = unsafe { BorrowedFd::borrow_raw(2) };
 ///
 /// [`exec(3)`]: https://pubs.opengroup.org/onlinepubs/9699919799/functions/exec.html
 ///
-pub fn run_command(args: Vec<CString>) -> Result<Infallible> {
+#[allow(clippy::missing_errors_doc)]
+pub fn run_command(args: &[CString]) -> Result<Infallible> {
     let new_stdin = STDIN.try_clone_to_owned()?;
     let new_stderr = STDERR.try_clone_to_owned()?;
     let pty1 = unsafe { crate::forkpty() }?;
@@ -56,7 +57,7 @@ unsafe fn forkpty() -> Result<ForkptyResult> {
     Ok(result)
 }
 
-fn exec(args: Vec<CString>) -> Result<Infallible> {
+fn exec(args: &[CString]) -> Result<Infallible> {
     let args: Vec<_> = args.iter().map(CString::as_c_str).collect();
     Ok(unistd::execvp(args[0], &args)?)
 }
